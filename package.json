@@ -41,13 +41,13 @@
     "commit-analyzer"
   ],
   "author": "Niraj <nobodypal27@gmail.com>",
-  "homepage": "https://github.com/niraj/ai-work-generator#readme",
+  "homepage": "https://github.com/nobody-27/ai-work-report-generator#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/niraj/ai-work-generator.git"
+    "url": "git+https://github.com/nobody-27/ai-work-report-generator.git"
   },
   "bugs": {
-    "url": "https://github.com/niraj/ai-work-generator/issues"
+    "url": "https://github.com/nobody-27/ai-work-report-generator/issues"
   },
   "license": "MIT",
   "dependencies": {
