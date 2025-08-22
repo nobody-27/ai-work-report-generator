@@ -1,0 +1,67 @@
+{
+  "name": "ai-work-generator",
+  "version": "1.0.0",
+  "description": "Generate professional work reports from git commits using AI (OpenAI, Claude, Gemini, OpenRouter). Includes Slack integration.",
+  "main": "index.js",
+  "bin": {
+    "ai-work": "./cli.js",
+    "aiwork": "./cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "npm run check",
+    "check": "node --check cli.js && node --check index.js && node --check llm-providers.js && node --check slack.js",
+    "version": "npm run check && git add -A .",
+    "postversion": "git push && git push --tags"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "cli.js",
+    "index.js",
+    "llm-providers.js",
+    "slack.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "git",
+    "work-report",
+    "llm",
+    "ai",
+    "productivity",
+    "openai",
+    "claude",
+    "anthropic",
+    "gemini",
+    "slack",
+    "standup",
+    "daily-report",
+    "commit-analyzer"
+  ],
+  "author": "Niraj <nobodypal27@gmail.com>",
+  "homepage": "https://github.com/niraj/ai-work-generator#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niraj/ai-work-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/niraj/ai-work-generator/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.20.0",
+    "@google/generative-ai": "^0.2.0",
+    "@slack/webhook": "^7.0.2",
+    "axios": "^1.6.7",
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "dotenv": "^16.3.1",
+    "inquirer": "^9.2.12",
+    "openai": "^4.28.0",
+    "ora": "^8.0.1",
+    "simple-git": "^3.21.0"
+  },
+  "type": "module"
+}

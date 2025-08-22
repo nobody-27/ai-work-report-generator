@@ -1,0 +1,38 @@
+# Development files
+.env
+.env.local
+*.log
+.DS_Store
+
+# Documentation files (keep README.md)
+example-usage.md
+slack-example.md
+provider-examples.md
+
+# Git files
+.git
+.gitignore
+
+# IDE files
+.vscode
+.idea
+*.swp
+*.swo
+
+# Test files
+test/
+tests/
+*.test.js
+*.spec.js
+
+# Build files
+dist/
+build/
+
+# Dependencies
+node_modules/
+
+# Config files not needed in package
+.eslintrc
+.prettierrc
+.editorconfig
