@@ -1,6 +1,6 @@
 {
   "name": "ai-work-report-generator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Generate professional work reports from git commits using AI (OpenAI, Claude, Gemini, OpenRouter). Includes Slack integration.",
   "main": "index.js",
   "bin": {
