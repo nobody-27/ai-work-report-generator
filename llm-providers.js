@@ -135,6 +135,10 @@ export class LLMProvider {
       
       return response.data.choices[0].message.content;
     } catch (error) {
+      if (error.response) {
+        const errorMessage = error.response.data?.error?.message || error.response.data?.message || error.response.statusText;
+        throw new Error(`OpenRouter API error (${error.response.status}): ${errorMessage}`);
+      }
       throw new Error(`OpenRouter API error: ${error.message}`);
     }
   }
@@ -169,10 +173,14 @@ export class LLMProvider {
         return [
           'openai/gpt-3.5-turbo',
           'openai/gpt-4',
-          'anthropic/claude-3-opus',
-          'anthropic/claude-3-sonnet',
-          'google/gemini-pro',
+          'openai/gpt-4-turbo',
+          'anthropic/claude-3-opus-20240229',
+          'anthropic/claude-3-sonnet-20240229',
+          'anthropic/claude-3-haiku-20240307',
+          'google/gemini-pro-1.5',
+          'meta-llama/llama-3-8b-instruct',
           'meta-llama/llama-3-70b-instruct',
+          'mistralai/mistral-7b-instruct',
           'mistralai/mixtral-8x7b-instruct'
         ];
       default:

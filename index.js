@@ -1,5 +1,4 @@
 import simpleGit from 'simple-git';
-import chalk from 'chalk';
 import { LLMProvider } from './llm-providers.js';
 
 export async function getGitLogs(options = {}) {
@@ -12,8 +11,6 @@ export async function getGitLogs(options = {}) {
   const sinceDate = since.toISOString().split('T')[0];
   
   const logOptions = {
-    from: sinceDate,
-    to: 'HEAD',
     format: {
       hash: '%H',
       date: '%ai',
@@ -23,6 +20,9 @@ export async function getGitLogs(options = {}) {
       author_email: '%ae'
     }
   };
+  
+  // Add date range using --since
+  logOptions['--since'] = sinceDate;
   
   if (authorEmail) {
     logOptions['--author'] = authorEmail;

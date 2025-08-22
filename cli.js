@@ -8,7 +8,11 @@ import dotenv from 'dotenv';
 import { generateWorkReport } from './index.js';
 import { sendToSlack, validateWebhookUrl } from './slack.js';
 import { LLMProvider } from './llm-providers.js';
+import os from 'os';
+import path from 'path';
 
+// Load config from home directory first, then from current directory
+dotenv.config({ path: path.join(os.homedir(), '.ai-work-config') });
 dotenv.config();
 
 program
@@ -19,7 +23,7 @@ program
 program
   .command('generate')
   .description('Generate work report from today\'s git commits')
-  .option('-p, --provider <provider>', 'LLM provider (openai, claude, gemini, openrouter)', 'openai')
+  .option('-p, --provider <provider>', 'LLM provider (openai, claude, gemini, openrouter)')
   .option('-k, --api-key <key>', 'API key for the selected provider')
   .option('-m, --model <model>', 'Model to use for the selected provider')
   .option('-d, --days <days>', 'Number of days to look back', '1')
@@ -53,7 +57,8 @@ program
         apiKey = answers.apiKey;
       }
       
-      if (!options.model && provider !== 'openai') {
+      // Only prompt for model if not already set via CLI option or config
+      if (!model && provider !== 'openai') {
         const models = LLMProvider.getProviderModels(provider);
         if (models.length > 0) {
           const modelAnswer = await inquirer.prompt([
@@ -192,8 +197,9 @@ program
     
     try {
       const fs = await import('fs/promises');
-      await fs.writeFile('.env', envContent);
-      console.log(chalk.green('✓ Configuration saved to .env file'));
+      const configPath = path.join(os.homedir(), '.ai-work-config');
+      await fs.writeFile(configPath, envContent);
+      console.log(chalk.green(`✓ Configuration saved to ${configPath}`));
     } catch (error) {
       console.error(chalk.red('Error saving configuration:', error.message));
     }
