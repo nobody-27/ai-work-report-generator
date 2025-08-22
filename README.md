@@ -1,17 +1,17 @@
-# Git Work Reporter
+# AI Work Report Generator
 
 Generate professional work reports from your git commits using AI. Supports multiple LLM providers including OpenAI, Claude, Google Gemini, and OpenRouter.
 
 ## Installation
 
 ```bash
-npm install git-work-reporter
+npm install ai-work-report-generator
 ```
 
 Or install globally:
 
 ```bash
-npm install -g git-work-reporter
+npm install -g ai-work-report-generator
 ```
 
 ## Usage
@@ -21,38 +21,40 @@ npm install -g git-work-reporter
 Generate a report from today's commits:
 
 ```bash
-git-work-report generate
+ai-work generate
+# or
+aiwork generate
 ```
 
 ### With Options
 
 ```bash
 # Look back 7 days
-git-work-report generate -d 7
+ai-work generate -d 7
 
 # Filter by author
-git-work-report generate -a "your.email@example.com"
+ai-work generate -a "your.email@example.com"
 
 # Use a specific model
-git-work-report generate -m gpt-4
+ai-work generate -m gpt-4
 
 # Use Claude
-git-work-report generate -p claude -m claude-3-sonnet-20240229
+ai-work generate -p claude -m claude-3-sonnet-20240229
 
 # Use Google Gemini
-git-work-report generate -p gemini -m gemini-pro
+ai-work generate -p gemini -m gemini-pro
 
 # Use OpenRouter
-git-work-report generate -p openrouter -m anthropic/claude-3-opus
+ai-work generate -p openrouter -m anthropic/claude-3-opus
 
 # Specify repository path
-git-work-report generate -r /path/to/repo
+ai-work generate -r /path/to/repo
 
 # Send report to Slack
-git-work-report generate -s
+ai-work generate -s
 
 # Send to Slack with webhook URL
-git-work-report generate -s -w https://hooks.slack.com/services/YOUR/WEBHOOK/URL
+ai-work generate -s -w https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 ```
 
 ### Configuration
@@ -60,7 +62,7 @@ git-work-report generate -s -w https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 Save your API key for future use:
 
 ```bash
-git-work-report config
+ai-work config
 ```
 
 Or create a `.env` file:
@@ -133,13 +135,13 @@ The tool supports optional Slack integration to automatically send reports to yo
 
 ```bash
 # Interactive mode - will ask for confirmation
-git-work-report generate -s
+ai-work generate -s
 
 # Direct send with webhook
-git-work-report generate -s -w https://hooks.slack.com/services/YOUR/WEBHOOK/URL
+ai-work generate -s -w https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 
 # Automatic (if webhook is in .env)
-git-work-report generate -s
+ai-work generate -s
 ```
 
 The Slack message will be formatted with:
